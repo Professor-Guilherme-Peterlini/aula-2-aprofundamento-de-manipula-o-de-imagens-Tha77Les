@@ -50,10 +50,6 @@ img_final = img_bordas.point(lambda x: 255 if x > limiar else 0)
    * Justifique cada etapa do processo
    * Explique como você escolheria os parâmetros
 
-## Critérios de Avaliação
-* Precisão técnica (40%)
-* Clareza na explicação (30%)
-* Capacidade de relacionar conceitos (30%)
 
 ## Bônus (1,0 ponto extra)
 Proponha uma modificação no pipeline de processamento que poderia melhorar os resultados em imagens com baixo contraste.
