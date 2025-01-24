@@ -11,10 +11,16 @@
 
 1. (2,0 pontos) Explique a diferença entre os métodos de redimensionamento de imagem:
    * Nearest Neighbor
+   R: É o método mais simples de redimensionamento de imagem, ele copia o valor do pixel mais próximo na hora de redimensionar, um serviço mais rápido que pode acabar gerando uma imagem mais pixelada.
+
    * Bilinear
+   R: O método bilinear realiza um cálculo médio entre 4 pixels para gerar uma imagem com mais detalhes, porém um pouco mais pesada que a Nearest Neighbor.
+   
    * Bicubic
+   R: O método Bicubic realiza um cálculo médio entre 16 pixels, realizando uma imagem bem mais detalhada e pesada do que os outros métodos.
    
 2. (1,5 pontos) Por que é importante fazer backup das imagens originais antes de aplicar transformações? Cite dois cenários onde isso é crítico.
+   R: É importante realizar backups caso a imagem seja corrompida, ou caso o resultado não seja o esperado, podendo assim retornar ao seu estado original.
 
 ### Parte 2: Escala de Cinza
 
@@ -23,6 +29,7 @@
    * Método por luminosidade (Y = 0.299R + 0.587G + 0.114B)
    
    Por que o segundo método é considerado mais preciso para a percepção humana?
+   R: Pois o olho humano é mais sensível ao verde.
 
 4. (1,5 pontos) Em processamento de imagens, por que frequentemente convertemos uma imagem para escala de cinza antes de aplicar outros algoritmos?
 
