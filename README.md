@@ -73,6 +73,76 @@ Cinza = 76
 * **Antes**: Pixel colorido 🔴
 * **Depois**: Tom de cinza 🌫️ (valor 76)
 
+# Detectando Bordas em Imagens: Um Guia Simples
+
+## O que são bordas?
+Bordas são mudanças bruscas de intensidade na imagem - como a linha entre um objeto escuro e um fundo claro.
+
+## Operadores de Detecção
+
+### 1. Operador Sobel 🔍
+Imagine passar dois pentes pela imagem:
+- Pente Horizontal: Detecta bordas verticais
+- Pente Vertical: Detecta bordas horizontais
+
+```
+Pente Horizontal:    Pente Vertical:
+-1  0  +1           -1  -2  -1
+-2  0  +2            0   0   0
+-1  0  +1           +1  +2  +1
+```
+
+**Exemplo**: Uma linha vertical preta em fundo branco será detectada pelo pente horizontal.
+
+### 2. Operador Prewitt 🎨
+Similar ao Sobel, mas mais simples:
+```
+Horizontal:         Vertical:
+-1  0  +1          -1  -1  -1
+-1  0  +1           0   0   0
+-1  0  +1          +1  +1  +1
+```
+
+É como passar um pincel mais suave pela imagem.
+
+### 3. Operador Laplaciano 🎯
+Procura mudanças em todas as direções ao mesmo tempo:
+```
+ 0  +1   0
++1  -4  +1
+ 0  +1   0
+```
+
+Imagine uma bolinha que detecta mudanças bruscas em qualquer direção.
+
+## Comparação Visual
+
+| Operador    | Melhor Para                    | Resultado      |
+|------------|--------------------------------|----------------|
+| Sobel      | Bordas fortes e direcionais    | Linhas nítidas |
+| Prewitt    | Bordas suaves                  | Linhas suaves  |
+| Laplaciano | Detalhes finos e cantos        | Contornos      |
+
+## Exemplo Prático
+```python
+# Detector Sobel
+bordas_sobel = imagem.filter(ImageFilter.FIND_EDGES)
+
+# Detector Laplaciano
+bordas_laplace = imagem.filter(ImageFilter.Kernel((3, 3),
+    [0, 1, 0, 
+     1, -4, 1, 
+     0, 1, 0]))
+```
+
+## Dica de Uso 💡
+- Sobel: Use para encontrar bordas em direções específicas
+- Prewitt: Ideal para imagens com ruído
+- Laplaciano: Melhor para encontrar detalhes finos
+
+---
+**Nota**: Antes de detectar bordas, é sempre bom converter a imagem para escala de cinza e reduzir ruídos!
+
 ## Escala Final
 * `0` = ⚫ Preto total
 * `127` = 🔘 Cinza médio
