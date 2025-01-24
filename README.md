@@ -81,6 +81,12 @@ Bordas são mudanças bruscas de intensidade na imagem - como a linha entre um o
 ## Operadores de Detecção
 
 ### 1. Operador Sobel 🔍
+Como Funciona
+
+Usa duas matrizes 3x3 (kernels)
+Uma para bordas horizontais, outra para verticais
+Calcula o gradiente (taxa de mudança) em cada direção
+
 Imagine passar dois pentes pela imagem:
 - Pente Horizontal: Detecta bordas verticais
 - Pente Vertical: Detecta bordas horizontais
@@ -96,6 +102,13 @@ Pente Horizontal:    Pente Vertical:
 
 ### 2. Operador Prewitt 🎨
 Similar ao Sobel, mas mais simples:
+
+Como Funciona
+
+Similar ao Sobel, mas com pesos uniformes
+Menos sensível a ruídos
+Melhor para bordas mais suaves
+
 ```
 Horizontal:         Vertical:
 -1  0  +1          -1  -1  -1
@@ -106,6 +119,13 @@ Horizontal:         Vertical:
 É como passar um pincel mais suave pela imagem.
 
 ### 3. Operador Laplaciano 🎯
+
+Como Funciona
+
+Detecta mudanças em todas as direções
+Muito sensível a ruídos
+Bom para encontrar detalhes finos
+
 Procura mudanças em todas as direções ao mesmo tempo:
 ```
  0  +1   0
@@ -135,10 +155,44 @@ bordas_laplace = imagem.filter(ImageFilter.Kernel((3, 3),
      0, 1, 0]))
 ```
 
-## Dica de Uso 💡
-- Sobel: Use para encontrar bordas em direções específicas
-- Prewitt: Ideal para imagens com ruído
-- Laplaciano: Melhor para encontrar detalhes finos
+Comparação dos Métodos
+Sobel
+
+✅ Bom para bordas direcionais
+✅ Menos sensível a ruído
+❌ Pode perder bordas diagonais
+
+Prewitt
+
+✅ Mais simples de calcular
+✅ Bom para bordas suaves
+❌ Menos preciso que Sobel
+
+Laplaciano
+
+✅ Detecta bordas em todas direções
+✅ Bom para detalhes finos
+❌ Muito sensível a ruído
+
+Dicas de Uso
+
+Pré-processamento:
+
+Sempre converta para escala de cinza
+Aplique suavização para reduzir ruído
+
+
+Escolha do Método:
+
+Imagem com ruído → Sobel ou Prewitt
+Detalhes finos → Laplaciano
+Bordas direcionais → Sobel
+
+
+Pós-processamento:
+
+Aplique limiarização para realçar bordas
+Combine métodos para melhores resultados
 
 ---
 **Nota**: Antes de detectar bordas, é sempre bom converter a imagem para escala de cinza e reduzir ruídos!
