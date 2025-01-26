@@ -32,15 +32,22 @@
    R: Pois o olho humano é mais sensível ao verde.
 
 4. (1,5 pontos) Em processamento de imagens, por que frequentemente convertemos uma imagem para escala de cinza antes de aplicar outros algoritmos?
+R: Imagens em escala de cinza possuem se tornam bidimensionais, diferente das imagens coloridas que, além de largura e altura, possuem os canais de cor.
 
 ### Parte 3: Detecção de Bordas
 
 5. (2,0 pontos) Explique o funcionamento dos seguintes operadores de detecção de bordas:
    * Sobel
+   R: Utiliza duas matrizes 3x3, uma para bordas verticais e outras para verticais, calculando as mudanças em cada direção, que geralmente correspondem a bordas ou contornos.
+
    * Prewitt
+   R: Funciona de maneira semelhante ao Sobel, porém é mais suave.
+
    * Laplaciano
+   O laplace indica mudanças em qualquer dureção, porém, é mais sensíveis a ruído, já que ruídos também variam das cores originais da imagem.
 
 6. (1,5 pontos) Na função `pipeline_processamento()` implementada, por que aplicamos equalização de histograma antes da detecção de bordas?
+R: Pois o processo de equalização de histograma melhora o contraste da imagem, tornando as diferenças mais visíveis, facilitando o serviço dos detectores de bordas.
 
 ### Parte 4: Aplicação Prática
 
@@ -54,7 +61,17 @@ img_final = img_bordas.point(lambda x: 255 if x > limiar else 0)
 
 8. (2,5 pontos) Descreva um pipeline completo para:
    * Detectar bordas em uma imagem com ruído
+   R:
+   def pipeline(imagem, limiar=128):
+    img_cinza = imagem.convert('L')
+    
+    img_equalizada = ImageOps.equalize(img_cinza)
+    
+    img_bordas = img_equalizada.filter(ImageFilter.FIND_EDGES)
+
    * Justifique cada etapa do processo
+   R: Na variável img_cinza a imagem é passada para a escala de cinza, na img_equalizada, o processo de equalização de histograma é feito, e em img_bordas, as bordas são identificadas.
+
    * Explique como você escolheria os parâmetros
 
 
